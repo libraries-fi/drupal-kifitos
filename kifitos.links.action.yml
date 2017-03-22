@@ -1,0 +1,5 @@
+kifitos.add_form:
+  route_name: entity.kifitos.add_form
+  title: 'Add item'
+  appears_on:
+    - view.kifitos_index.page_1

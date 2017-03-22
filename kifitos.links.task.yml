@@ -1,0 +1,9 @@
+kifitos.edit_agreement:
+  title: 'Edit'
+  route_name: entity.kifitos.edit_form
+  base_route: entity.kifitos.edit_form
+
+kifitos.configure_agreement:
+  title: 'Configure'
+  route_name: entity.kifitos.config_form
+  base_route: entity.kifitos.edit_form

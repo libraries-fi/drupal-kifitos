@@ -1,0 +1,5 @@
+kifitos.configure:
+  title: 'Terms of service'
+  route_name: view.kifitos_index.page_1
+  description: 'Manage terms of service agreements'
+  parent: system.admin_config_content

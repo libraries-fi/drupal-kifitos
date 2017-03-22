@@ -1,0 +1,25 @@
+services:
+  kifitos.agreement_resolver:
+    class: 'Drupal\kifitos\AgreementResolver'
+    arguments: ['@entity_type.manager', '@cache.kifitos_agreement_resolver']
+  kifitos.kernel_listener:
+    class: 'Drupal\kifitos\EventSubscriber\KernelSubscriber'
+    arguments: ['@controller_resolver', '@kifitos.agreement_resolver', '@config.factory', '@user.data']
+    tags:
+      - { name: event_subscriber }
+  kifitos.route_subscriber:
+    class: 'Drupal\kifitos\EventSubscriber\RouteSubscriber'
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: event_subscriber }
+  cache.kifitos_agreement_resolver:
+    class: Drupal\Core\Cache\CacheBackendInterface
+    factory: cache_factory:get
+    arguments: [kifitos_agreement_resolver]
+    tags:
+      - { name: cache.bin }
+  kifitos.route_guard:
+    class: Drupal\kifitos\Access\RouteGuard
+    arguments: ['@user.data']
+    tags:
+      - { name: access_check, applies_to: _kifitos_route_access }

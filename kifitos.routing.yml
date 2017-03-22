@@ -1,0 +1,51 @@
+entity.kifitos.canonical:
+  path: '/admin/content/kifitos/{kifitos}/view'
+  defaults:
+    _entity_view: 'kifitos.full'
+  requirements:
+    kifitos: \d+
+    _entity_access: 'kifitos.view'
+
+entity.kifitos.add_form:
+  path: '/admin/content/kifitos/add'
+  defaults:
+    _entity_form: 'kifitos.default'
+    _title: 'Add terms of service agreement'
+  requirements:
+    _permission: 'administer kifitos'
+
+entity.kifitos.edit_form:
+  path: '/admin/content/kifitos/{kifitos}/edit'
+  defaults:
+    _entity_form: 'kifitos.default'
+    _title: 'Edit terms of service agreement'
+  requirements:
+    kifitos: \d+
+    _entity_access: 'kifitos.update'
+    _kifitos_route_access: 'TRUE'
+
+entity.kifitos.delete_form:
+  path: '/admin/content/kifitos/{kifitos}/delete'
+  defaults:
+    _entity_form: 'kifitos.delete'
+    _title: 'Delete terms of service agreement'
+  requirements:
+    kifitos: \d+
+    _entity_access: 'kifitos.delete'
+
+entity.kifitos.config_form:
+  path: '/admin/content/kifitos/{kifitos}/configure'
+  defaults:
+    _controller: 'Drupal\kifitos\Controller\AgreementController::configure'
+    _title: 'Configure {kifitos}'
+  requirements:
+    kifitos: \d+
+    _entity_access: 'kifitos.update'
+
+entity.kifitos.approve_form:
+  path: '/admin/content/kifitos/{kifitos}'
+  defaults:
+    _entity_form: 'kifitos.approve'
+  requirements:
+    kifitos: \d+
+    _entity_access: 'kifitos.approve'

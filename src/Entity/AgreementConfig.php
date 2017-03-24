@@ -13,6 +13,7 @@ use Drupal\kifitos\AgreementConfigInterface;
  *   id = "kifitos_config",
  *   label = @Translation("Agreement configuration"),
  *   handlers = {
+ *     "access" = "Drupal\kifitos\AgreementConfigAccessControlHandler",
  *     "list_builder" = "Drupal\kifimail\TemplateListBuilder",
  *     "form" = {
  *       "default" = "Drupal\kifitos\Form\AgreementConfigForm",

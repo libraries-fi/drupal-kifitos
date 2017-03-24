@@ -1,2 +1,5 @@
 administer kifitos:
   title: 'Administer module settings'
+
+administer kifitos_config:
+  title: 'Administer technical rules'

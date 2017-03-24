@@ -22,7 +22,6 @@ entity.kifitos.edit_form:
   requirements:
     kifitos: \d+
     _entity_access: 'kifitos.update'
-    _kifitos_route_access: 'TRUE'
 
 entity.kifitos.delete_form:
   path: '/admin/content/kifitos/{kifitos}/delete'
@@ -40,7 +39,8 @@ entity.kifitos.config_form:
     _title: 'Configure {kifitos}'
   requirements:
     kifitos: \d+
-    _entity_access: 'kifitos.update'
+    _permission: 'administer kifitos_config'
+
 
 entity.kifitos.approve_form:
   path: '/admin/content/kifitos/{kifitos}'

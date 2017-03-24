@@ -196,7 +196,7 @@ class Agreement extends ContentEntityBase implements AgreementInterface {
     return $this;
   }
 
-  public function postSave(EntityStorageInterface $storage) {
+  public function postSave(EntityStorageInterface $storage, $update = TRUE) {
     parent::postSave($storage);
 
     if (!$this->getConfig()) {

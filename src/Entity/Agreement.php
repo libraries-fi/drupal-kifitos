@@ -196,8 +196,8 @@ class Agreement extends ContentEntityBase implements AgreementInterface {
     return $this;
   }
 
-  public function preSave(EntityStorageInterface $storage) {
-    parent::preSave($storage);
+  public function postSave(EntityStorageInterface $storage) {
+    parent::postSave($storage);
 
     if (!$this->getConfig()) {
       $config = Drupal::entityTypeManager()->getStorage('kifitos_config')->create([

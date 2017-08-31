@@ -2,7 +2,7 @@ services:
   kifitos.agreement_resolver:
     class: 'Drupal\kifitos\AgreementResolver'
     arguments: ['@entity_type.manager', '@cache.kifitos_agreement_resolver']
-  kifitos.kernel_listener:
+  kifitos.event_listener.kernel_subscriber:
     class: 'Drupal\kifitos\EventSubscriber\KernelSubscriber'
     arguments: ['@controller_resolver', '@kifitos.agreement_resolver', '@config.factory', '@user.data']
     tags:

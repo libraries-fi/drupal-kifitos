@@ -37,16 +37,8 @@ class KernelSubscriber implements EventSubscriberInterface {
     $this->userData = $user_data;
   }
 
-  // public function onRequest(GetResponseEvent $event) {
-  //
-  // }
-
   public function onController(FilterControllerEvent $event) {
     $user = Drupal::currentUser();
-
-    // var_dump('here');
-
-    // var_dump(\Drupal::service('request_stack')->getCurrentRoute());
 
     $controller = $event->getController();
     $request = $event->getRequest();
@@ -67,7 +59,9 @@ class KernelSubscriber implements EventSubscriberInterface {
           break;
 
         case AgreementConfigInterface::MESSAGE:
-          drupal_set_message(new FormattableMarkup($agreement->getConfig()->getMessage(), []), 'warning', FALSE);
+          if ($event->getRequest()->isMethod('get')) {
+            drupal_set_message(new FormattableMarkup($agreement->getConfig()->getMessage(), []), 'warning', FALSE);
+          }
           break;
       }
     }

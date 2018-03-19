@@ -1,0 +1,6 @@
+{
+  "name": "libraries-fi/kifitos",
+  "description": "Basic terms of service guard for users.",
+  "type": "drupal-module",
+  "license": "GPL-2.0+"
+}

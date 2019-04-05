@@ -36,13 +36,9 @@ class AgreementResolver {
     if(!$this->config) {
       if($cache = $this->config = $this->cache->get('config', TRUE)) {
         $this->config = $cache->data;
-        print_r("Config loytyi:");
-        print_r($this->config);
       }
       else {
         $this->reCreateCache();
-        print_r("Config piti luoda uudestaan:");
-        print_r($this->config);
       }
     }
 

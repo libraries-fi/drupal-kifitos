@@ -208,6 +208,21 @@ class Agreement extends ContentEntityBase implements AgreementInterface {
     }
   }
 
+  // Delete also config entity associated with the Agreement
+  public static function postDelete(EntityStorageInterface $storage, array $entities) {
+    parent::postDelete($storage, $entities);
+    $configs = [];
+    foreach ($entities as $agreement_entity) {
+      if($config = $agreement_entity->getConfig()) {
+        $configs[] = $config;
+        $config = NULL;
+      }
+    }
+    if(!empty($configs)) {
+      Drupal::entityTypeManager()->getStorage('kifitos_config')->delete($configs);
+    }
+  }
+
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields['id'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('ID'))

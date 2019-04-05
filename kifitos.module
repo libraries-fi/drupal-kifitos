@@ -3,11 +3,10 @@
 use Drupal\kifitos\AgreementConfigInterface;
 
 function kifitos_kifitos_config_presave(AgreementConfigInterface $config) {
-  Drupal::service('kifitos.agreement_resolver')->cacheConfigs([$config]);
+  Drupal::service('kifitos.agreement_resolver')->cacheSingleConfig($config);
 }
 
-function kifitos_rebuild() {
-  $storage = Drupal::service('entity_type.manager')->getStorage('kifitos_config');
-  $configs = $storage->loadMultiple();
-  Drupal::service('kifitos.agreement_resolver')->cacheConfigs($configs);
+// Re-create config cache
+function kifitos_kifitos_config_delete(AgreementConfigInterface $config) {
+  Drupal::service('kifitos.agreement_resolver')->reCreateCache();
 }

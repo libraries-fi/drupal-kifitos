@@ -46,15 +46,17 @@ class AgreementResolver {
   }
 
   protected function byRoute($route) {
+    
     if ($item = $this->config['route.' . $route]) {
-      return $this->storage->load($item->data);
+      return $this->storage->load($item['data']);
     }
   }
 
   protected function byRole(AccountInterface $account) {
+
     foreach ($account->getRoles() as $role) {
       if ($item = $this->config['role.' . $role]) {
-        return $this->storage->load($item->data);
+        return $this->storage->load($item['data']);
       }
     }
   }

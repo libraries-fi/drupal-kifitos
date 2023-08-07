@@ -4,8 +4,7 @@ namespace Drupal\kifitos\Form;
 
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityForm;
-use Drupal\Core\Entity\Controller\EntityViewController;
-use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\kifitos\Access\RouteGuard;
 use Drupal\user\UserDataInterface;
@@ -16,13 +15,13 @@ class AgreementApproveForm extends ContentEntityForm {
 
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity.manager'),
+      $container->get('entity.repository'),
       $container->get('user.data')
     );
   }
 
-  public function __construct(EntityManagerInterface $entity_manager, UserDataInterface $user_data) {
-    parent::__construct($entity_manager);
+  public function __construct(EntityRepositoryInterface $entity_repository, UserDataInterface $user_data) {
+    parent::__construct($entity_repository);
     $this->userData = $user_data;
   }
 

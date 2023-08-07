@@ -224,6 +224,7 @@ class Agreement extends ContentEntityBase implements AgreementInterface {
   }
 
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
+    $fields = [];
     $fields['id'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('ID'))
       ->setDescription(t('Agreement ID'))

@@ -70,6 +70,6 @@ class AgreementConfigForm extends EntityForm {
 
   public function save(array $form, FormStateInterface $form_state) {
     $this->entity->save();
-    drupal_set_message($this->t('Configuration updated.'));
+    $this->messenger()->addStatus($this->t('Configuration updated.'));
   }
 }

@@ -11,7 +11,7 @@ class RouteSubscriber extends RouteSubscriberBase {
   protected $entityManager;
   protected $configStorage;
 
-  const ROUTE_GUARD = '_kifitos_route_access';
+  public const ROUTE_GUARD = '_kifitos_route_access';
 
   public function __construct(EntityTypeManagerInterface $entity_manager) {
     $this->entityManager = $entity_manager;
@@ -30,7 +30,7 @@ class RouteSubscriber extends RouteSubscriberBase {
           $route->setRequirement(self::ROUTE_GUARD, 'TRUE');
           $route->setDefault('_kifitos', $config->id());
         } else {
-          trigger_error(sprintf('%s: Route \'%d\' does not exist.', __CLASS__,  $route_id));
+          trigger_error(sprintf('%s: Route \'%d\' does not exist.', self::class,  $route_id));
         }
       }
     }

@@ -60,7 +60,7 @@ class KernelSubscriber implements EventSubscriberInterface {
 
         case AgreementConfigInterface::MESSAGE:
           if ($event->getRequest()->isMethod('get')) {
-            drupal_set_message(new FormattableMarkup($agreement->getConfig()->getMessage(), []), 'warning', FALSE);
+            \Drupal::messenger()->addWarning(new FormattableMarkup($agreement->getConfig()->getMessage(), []), FALSE);
           }
           break;
       }

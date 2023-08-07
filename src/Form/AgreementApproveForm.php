@@ -52,6 +52,7 @@ class AgreementApproveForm extends ContentEntityForm {
   }
 
   public function view(array $form, FormStateInterface $form_state) {
+    $view = [];
     $view['body'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Terms of service'),

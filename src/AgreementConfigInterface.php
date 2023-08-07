@@ -6,8 +6,8 @@ use Drupal\Core\Config\Entity\ConfigEntityInterface;
 
 interface AgreementConfigInterface {
 
-  const ROUTE_GUARD = 1;
-  const MESSAGE = 2;
+  public const ROUTE_GUARD = 1;
+  public const MESSAGE = 2;
 
   public function getLabel();
   public function setLabel($label);

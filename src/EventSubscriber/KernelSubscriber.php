@@ -2,6 +2,7 @@
 
 namespace Drupal\kifitos\EventSubscriber;
 
+use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use Drupal;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Config\ConfigFactoryInterface;
@@ -13,8 +14,6 @@ use Drupal\kifitos\AgreementConfigInterface;
 use Drupal\user\UserDataInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpFoundation\Request;
 
 class KernelSubscriber implements EventSubscriberInterface {
@@ -37,7 +36,7 @@ class KernelSubscriber implements EventSubscriberInterface {
     $this->userData = $user_data;
   }
 
-  public function onController(FilterControllerEvent $event) {
+  public function onController(ControllerEvent $event) {
     $user = Drupal::currentUser();
 
     $controller = $event->getController();

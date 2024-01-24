@@ -2,9 +2,11 @@
 
 namespace Drupal\kifitos\Form;
 
+use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\kifitos\Access\RouteGuard;
 use Drupal\user\UserDataInterface;
@@ -13,16 +15,21 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class AgreementApproveForm extends ContentEntityForm {
   protected $userData;
 
+  public function __construct(EntityRepositoryInterface $entity_repository, EntityTypeBundleInfoInterface $entity_type_bundle_info, TimeInterface $time, UserDataInterface $user_data) {
+    parent::__construct($entity_repository, $entity_type_bundle_info, $time);
+    $this->userData = $user_data;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('entity.repository'),
+      $container->get('entity_type.bundle.info'),
+      $container->get('datetime.time'),
       $container->get('user.data')
     );
-  }
-
-  public function __construct(EntityRepositoryInterface $entity_repository, UserDataInterface $user_data) {
-    parent::__construct($entity_repository);
-    $this->userData = $user_data;
   }
 
   public function buildForm(array $form, FormStateInterface $form_state) {
